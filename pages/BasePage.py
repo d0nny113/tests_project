@@ -17,6 +17,9 @@ class BasePage(object):
     def open(self):
         return self.driver.get(self.url)
 
+    def close(self):
+        return self.driver.quit
+
     def wait_until_displayed_element(self, locator: tuple) -> WebElement:
         return WebDriverWait(self, self.timeout).until(exp_cond.visibility_of_element_located(locator))
 
@@ -29,5 +32,7 @@ class BasePage(object):
     def wait_until_element_is_present(self, locator: tuple) -> WebElement:
         return WebDriverWait(self, self.timeout).until(exp_cond.presence_of_element_located(locator))
 
-    def wait_until_vis(self, element) -> WebElement:
-        return WebDriverWait(self, self.timeout).until(exp_cond.visibility_of(element))
+    def wait_until_elements_is_present(self, locator: tuple) -> WebElement:
+        return WebDriverWait(self, self.timeout).until(exp_cond.presence_of_all_elements_located(locator))
+
+
