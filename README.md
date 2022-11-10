@@ -28,7 +28,7 @@
 
  Для запуска тестов только формы регистрации ввести команду: 
  
-                                      pytest tests/tests.py::TestAuthPage::TestRegisterPage
+                                      pytest tests/tests.py::TestRegisterPage
 
  
  Для работоспособности тестов c файлом conftest.py, необходимо добавить движки бразуеров в системную переменную PATH.

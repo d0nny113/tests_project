@@ -1,6 +1,6 @@
 import time
 import pytest
-from selenium.webdriver.common.by import By
+
 
 from pages.AuthPage import AuthPage
 from pages.PasswordRecoveryPage import PasswordRecoveryPageInputCode
