@@ -37,9 +37,19 @@
 
  Тесты так же поддерживают дополнительные команды указанные ниже, их нужно вводить после основных комманд для запуска.
 
- Для выбора браузера команда      --browser_name= (firefox or chrome or yandex)
- Для выбора языка браузера        --language=ru (default='en')
- Для выбора безбраузерного режима --headless=true (default='None')
- Для выбора ширины окна           --width_window=(default='1920')
- Для выбора высоты окна           --height_window=(default='1080')
+ Для выбора браузера команда
+
+            --browser_name= (firefox or chrome or yandex)      
+ Для выбора языка браузера  
+
+            --language=ru (default='en')      
+ Для выбора безбраузерного режима
+
+            --headless=true (default='None') 
+ Для выбора ширины окна
+
+            --width_window=(default='1920')          
+ Для выбора высоты окна
+
+            --height_window=(default='1080')           
  
