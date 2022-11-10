@@ -116,8 +116,8 @@ class RegisterPage(BasePage):
         except NoSuchElementException:
             return True
 
-    def check_error(self):
-        """  Метод проверяет правильность заполнения полей ввода формы регистрации
+    def check_errors(self):
+        """  Метод проверяет правильность заполнения всех полей ввода формы регистрации
                                если есть ошибки возвращает False если ошибок нет возвращает True"""
         name_container = self.wait_until_displayed_elements(Locators.NAME_CONTAINER)
         password_container = self.wait_until_displayed_elements(Locators.PASSWORD_CONTAINER)

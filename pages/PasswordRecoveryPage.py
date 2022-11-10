@@ -35,6 +35,12 @@ class LocatorsInputCode:
     BUTTON_BACK = (By.XPATH, '//button[@name="cancel_reset"]')
     SIX_NUMBERS = (By.XPATH, '//div[@class="sdi-container sdi-container--medium"]')
 
+class LocatorsNewPassword:
+
+    FIELD_PASSWORD = (By.XPATH, '//input[@name="password-new"]')
+    FIELD_PASSWORD_CONFIRM = (By.XPATH, '//input[@name="password-confirm"]')
+    BUTTON_SAVE = (By.XPATH, '//button[@id="t-btn-reset-pass"]')
+
 
 class PasswordRecoveryPageStepInputAccount(BasePage):
 
@@ -70,12 +76,18 @@ class PasswordRecoveryPageStepInputAccount(BasePage):
         """  Метод возвращает ввод в поле username """
         return self.wait_until_clickable(LocatorsInputAccount.FIELD_USERNAME).send_keys(data)
 
-    def check_login_bar_status(self):
+    def check_recovery_bar_status(self):
         """  Метод возвращает активный способ аутентификации """
         type_bar = self.wait_until_displayed_elements(LocatorsInputAccount.CONTAINER_LINK)
         for status in type_bar:
             if status.get_attribute('class') == 'rt-tab rt-tab--small rt-tab--active':
                 return status.text
+
+    def check_recovery_bar_types(self):
+        """  Метод возвращает названия типов аутентификации в меню выбора восстановления пароля """
+        login_bar = self.wait_until_clickable(LocatorsInputAccount.CONTAINER_LINK)
+        login_types = ''.join(login_bar.text)
+        return login_types
 
 
 class PasswordRecoveryPageSelectType(BasePage):
@@ -85,7 +97,8 @@ class PasswordRecoveryPageSelectType(BasePage):
         return self.wait_until_clickable(LocatorsSelectType.BUTTON_PROCEED).click()
 
     def select_recovery_type(self, value):
-        """  Метод возвращает выбор восстановления пароля """
+        """  Метод возвращает выбор восстановления пароля
+               по телефону - sms, с помощью почты - email    """
 
         buttons = self.wait_until_displayed_elements(LocatorsSelectType.RADIO_GROUP)
         if not any(i.find_element(By.CSS_SELECTOR, 'input').get_property('value') == value for i in buttons):
@@ -108,10 +121,28 @@ class PasswordRecoveryPageInputCode(BasePage):
 
     def input_code_numbers(self, code: str):
         """  Метод возвращает ввод шестизначного кода из SMS в поля ввода """
-        code = code.split(' ')
-        self.driver.find_element(By.CSS_SELECTOR, 'input:focus').send_keys(code[0])
-        self.driver.find_element(By.CSS_SELECTOR, 'input:focus').send_keys(code[1])
-        self.driver.find_element(By.CSS_SELECTOR, 'input:focus').send_keys(code[2])
-        self.driver.find_element(By.CSS_SELECTOR, 'input:focus').send_keys(code[3])
-        self.driver.find_element(By.CSS_SELECTOR, 'input:focus').send_keys(code[4])
-        self.driver.find_element(By.CSS_SELECTOR, 'input:focus').send_keys(code[5])
+        try:
+            code = code.split(' ')
+            self.driver.find_element(By.CSS_SELECTOR, 'input:focus').send_keys(code[0])
+            self.driver.find_element(By.CSS_SELECTOR, 'input:focus').send_keys(code[1])
+            self.driver.find_element(By.CSS_SELECTOR, 'input:focus').send_keys(code[2])
+            self.driver.find_element(By.CSS_SELECTOR, 'input:focus').send_keys(code[3])
+            self.driver.find_element(By.CSS_SELECTOR, 'input:focus').send_keys(code[4])
+            self.driver.find_element(By.CSS_SELECTOR, 'input:focus').send_keys(code[5])
+        except IndexError:
+            pass
+
+
+class PasswordRecoveryPageNewPassword(BasePage):
+
+    def input_new_password(self, new_password):
+        """  Метод возвращает ввод нового пароля в поле пароль """
+        return self.wait_until_clickable(LocatorsNewPassword.FIELD_PASSWORD).send_keys(new_password)
+
+    def input_new_password_confirm(self, new_password):
+        """  Метод возвращает ввод нового пароля в поле подтверждения пароля """
+        return self.wait_until_clickable(LocatorsNewPassword.FIELD_PASSWORD_CONFIRM).send_keys(new_password)
+
+    def button_save_submit(self):
+        """  Метод возвращает нажатие на кнопку сохранить """
+        return self.wait_until_clickable(LocatorsNewPassword.BUTTON_SAVE).click()
