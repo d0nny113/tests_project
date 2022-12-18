@@ -1,10 +1,14 @@
  Проект содержит автотесты для UI тестирования сервисов:
 
-[ЕЛК Web](https//lk.rt.ru)
-[Онлайм Web](https//my.rt.ru)
-[Старт Web](https//start.rt.ru)
-[Умный дом Web](lk.smarthome.rt.ru)
-[Ключ Web](https//key.rt.ru)
+#[ЕЛК Web](https//lk.rt.ru)
+
+#[Онлайм Web](https//my.rt.ru)
+
+#[Старт Web](https//start.rt.ru)
+
+#[Умный дом Web](lk.smarthome.rt.ru)
+
+#[Ключ Web](https//key.rt.ru)
 
  
  В файле .tests/tests.py содержатся тесты
